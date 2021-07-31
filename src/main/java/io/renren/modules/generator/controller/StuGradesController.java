@@ -1,22 +1,27 @@
 package io.renren.modules.generator.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import io.renren.modules.generator.service.impl.StuGradesServiceImpl;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.renren.modules.generator.entity.StuGradesEntity;
 import io.renren.modules.generator.service.StuGradesService;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -100,15 +105,15 @@ public class StuGradesController {
         return R.ok().put("list",list);
     }
 
-//    /**
-//     * 求和
-//     */
-//    @RequestMapping("/sum")
-//    @RequiresPermissions("generator:stugrades:sum")
-//    public R sum(@RequestBody StuGradesEntity stuGrades){
-//        stuGradesService.gradessum(stuGrades);
-//
-//        return R.ok();
-//    }
+    /**
+     * 导出excel
+     */
+    @RequestMapping("/poiOut")
+    @RequiresPermissions("generator:stugrades:poiOut")
+    // @GetMapping("/exportUserExcel")
+    public R exportExcel() {
+        stuGradesService.generateStudentsExcel();
+        return R.ok();
+    }
 
 }
