@@ -34,8 +34,6 @@ public class StuGradesEntity implements Serializable {
 	 *
 	 */
 	@TableId
-	@ColumnWidth(18)
-	@ExcelProperty("序号")
 	private Long id;
 	/**
 	 * 姓名
