@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 @Component(value = "StuGradesDao")
 public interface StuGradesDao extends BaseMapper<StuGradesEntity> {
-
+     //void save(List<StuGradesEntity> list);
 //   public int gradessum(StuGradesEntity entity);
 
 }
